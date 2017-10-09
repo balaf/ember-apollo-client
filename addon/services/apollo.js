@@ -3,6 +3,7 @@ import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { apolloObservableKey } from 'ember-apollo-client';
 import QueryManager from 'ember-apollo-client/apollo/query-manager';
 import copyWithExtras from 'ember-apollo-client/utils/copy-with-extras';
+import { createApolloFetch } from 'apollo-fetch';
 
 const {
   A,
@@ -116,7 +117,8 @@ export default Service.extend({
     if (isPresent(requestCredentials)) {
       networkInterfaceOptions.opts.credentials = requestCredentials;
     }
-    const networkInterface = createNetworkInterface(networkInterfaceOptions);
+    //const networkInterface = createNetworkInterface(networkInterfaceOptions);
+    const networkInterface = createApolloFetch(networkInterfaceOptions);
 
     if (isPresent(middlewares)) {
       networkInterface.use(middlewares);
