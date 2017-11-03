@@ -1,8 +1,9 @@
 import Ember from 'ember';
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import ApolloClient from 'apollo-client';
 import { apolloObservableKey } from 'ember-apollo-client';
 import QueryManager from 'ember-apollo-client/apollo/query-manager';
 import copyWithExtras from 'ember-apollo-client/utils/copy-with-extras';
+import { print } from 'graphql/language/printer';
 import { createApolloFetch } from 'apollo-fetch';
 
 const {
@@ -117,8 +118,11 @@ export default Service.extend({
     if (isPresent(requestCredentials)) {
       networkInterfaceOptions.opts.credentials = requestCredentials;
     }
-    //const networkInterface = createNetworkInterface(networkInterfaceOptions);
-    const networkInterface = createApolloFetch(networkInterfaceOptions);
+    console.log("Creatign Fetch appolo");
+    const apolloFetch = createApolloFetch(networkInterfaceOptions);
+    const networkInterface = {
+      query: (req) => apolloFetch({req, query: print(req.query)}),
+    };
 
     if (isPresent(middlewares)) {
       networkInterface.use(middlewares);
