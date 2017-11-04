@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ApolloClient from 'apollo-client';
+import ApolloClient, {createNetworkInterface} from 'apollo-client';
 import { apolloObservableKey } from 'ember-apollo-client';
 import QueryManager from 'ember-apollo-client/apollo/query-manager';
 import copyWithExtras from 'ember-apollo-client/utils/copy-with-extras';
@@ -107,6 +107,27 @@ export default Service.extend({
    * @return {!Object}
    * @public
    */
+  //  clientOptions: computed(function() {
+  //    const apiURL = this.get('apiURL');
+  //    const requestCredentials = this.get('requestCredentials');
+  //    const middlewares = this.get('middlewares');
+  //    const networkInterfaceOptions = {
+  //      uri: apiURL,
+  //      opts: {},
+  //    }
+  //    if (isPresent(requestCredentials)) {
+  //      networkInterfaceOptions.opts.credentials = requestCredentials;
+  //    }
+  //    const networkInterface = createNetworkInterface(networkInterfaceOptions);
+  //
+  //    if (isPresent(middlewares)) {
+  //      networkInterface.use(middlewares);
+  //    }
+  //
+  //    return {
+  //      networkInterface,
+  //    };
+  // }),
   clientOptions: computed(function() {
     const apiURL = this.get('apiURL');
     const requestCredentials = this.get('requestCredentials');
