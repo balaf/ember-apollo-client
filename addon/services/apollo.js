@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import ApolloClient, {createNetworkInterface} from 'apollo-client';
+import { print } from 'graphql/language/printer';
+import { createApolloFetch } from 'apollo-fetch';
 import { apolloObservableKey } from 'ember-apollo-client';
 import QueryManager from 'ember-apollo-client/apollo/query-manager';
 import copyWithExtras from 'ember-apollo-client/utils/copy-with-extras';
-import { print } from 'graphql/language/printer';
-import { createApolloFetch } from 'apollo-fetch';
+
 
 const {
   A,
